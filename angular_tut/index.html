@@ -5,7 +5,8 @@
 		
 		<!-- CSS -->
 		<!-- load bootstrap and our stylesheet -->
-		<link rel="styleheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 		<style>
 			body {
 				padding-top:50px;
@@ -22,7 +23,30 @@
 		
 		<!-- display the message -->
 		<h2>This is my Message:</h2>
-		{{ main.message }}
+			{{ main.message }}
+		
+		<h2>This is my list:</h2>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Color</td>
+					<td>Nerd Level</td>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="computer in main.computers">
+					<td>{{computer.name}}</td>
+					<td>{{computer.color}}</td>
+					<td>{{computer.nerdness}}</td>
+				</tr>
+			</tbody>
+		</table>
+		
+		<div class="form-group">
+			<label>Message</label>
+			<input type="text" class="form-control" ng-model="main.message">
+		</div>
 	</div>
 </body>
 </html>
