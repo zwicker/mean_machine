@@ -14,11 +14,14 @@ var jwt         = require('jsonwebtoken');
 var superSecret = 'ilovescotchyscotch';
 
 // Call User models
-var User = require('./app/models/user');
+var User      = require('./app/models/user');
+
+// Call Product Models
+var Product   = require('./app/models/product'); 
 
 
 // connect to our database (hosted on modulus.io)
-mongoose.connect('mongodb://localhost:27017/baseapp');
+mongoose.connect('mongodb://localhost:27017/baseapp2');
 
 // APP CONFIGURATION-------------------------
 // use body parser so we can grab information from POST requests
@@ -46,6 +49,9 @@ app.get('/', function(req, res) {
 
 // get an instance of the express router
 var apiRouter = express.Router();
+
+// create an instance of the express router for products
+var productRouter = express.Router();
 
 // route for authenticating users
 apiRouter.post('/authenticate', function(req, res) {
@@ -135,6 +141,28 @@ apiRouter.use(function(req, res, next) {
   // next(); used to be used here
   //make sure to go to the next route and not to stop here
 });
+
+productRouter.route('/')
+  //create a product
+  .post(function(req, res) {
+    // create the instance of the product model
+    var product = new Product();
+    
+    product.name = req.body.name;
+    
+    product.save(function(err){
+      res.json({ message: 'Product added!'});
+    });
+  })
+  
+  .get(function(req, res) {
+    Product.find(function(err, products) {
+      if (err) res.send(err);
+      
+      //return products
+      res.json(products);
+    })
+  })
 
 apiRouter.route('/users')
     //create a user ()
@@ -232,6 +260,7 @@ apiRouter.get('/', function(req, res){
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', apiRouter);
+app.use('/products', productRouter);
 
 // START THE SERVER
 // ===============================
