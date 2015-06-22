@@ -1,0 +1,29 @@
+[
+    {
+        "firstname": "Pete",
+        "lastname": "Hunt",
+        "email": "petehunt@gmail.com",
+        "username": "PeteHunt",
+        "admin": true,
+        "developer": true,
+        "active": true
+    },
+    {
+        "firstname": "George",
+        "lastname": "Washington!",
+        "email": "georgewashington@death.gov.us",
+        "username": "GeorgeBrah",
+        "admin": true,
+        "developer": false,
+        "active": true
+    },
+    {
+        "firstname": "Cindy",
+        "lastname": "Crawford",
+        "email": "ilostweightlol@health.com",
+        "username": "CrawfordLoss",
+        "admin": true,
+        "developer": false,
+        "active": true
+    }
+]
